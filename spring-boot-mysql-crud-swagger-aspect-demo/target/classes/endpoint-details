@@ -1,0 +1,25 @@
+
+http://localhost:8282/swagger-ui.html
+
+Post Payload
+============
+http://localhost:8282/employee/create
+{
+  "id": 4,
+  "name": "john",
+  "role": "user"
+}
+
+http://localhost:8282/employee/getAll
+
+http://localhost:8282/employee/getById/{id}
+
+http://localhost:8282/employee/delete/{id}
+
+http://localhost:8282/employee/update/{id}
+
+Update Payload
+{
+  "name": "johny",
+  "role": "user"
+}
