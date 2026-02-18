@@ -1,0 +1,51 @@
+
+Step1:
+Create springboot with mysql crud application
+
+Step2: Add dependency in pom.xml
+1)spring-boot-starter-data-redis
+2)spring-boot-starter-cache
+
+Step3: Add th configuration details in application.properties or yml file
+spring.cache.type=redis
+# Do not cache nulls
+#spring.cache.redis.cache-null-values=false
+# 10 minutes default TTL
+spring.cache.redis.time-to-live=600000ms
+spring.cache.redis.use-key-prefix=true
+spring.cache.redis.key-prefix="CACHE_"
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
+# if we are using local redis or cloud but here we use docker so there is no need of username or password
+spring.data.redis.username=
+spring.data.redis.password=
+logging.level.org.springframework.data.redis=DEBUG
+
+Step4:
+Enable cache annotations in service class, whatever method you want cache.
+
+private static final String CACHE_NAME = "cache_users";
+
+@Cacheable(value = CACHE_NAME, key = "#id")
+getUser(Long id) {}
+
+@CachePut(value = CACHE_NAME, key = "#user.id")
+createUser(User user) {}
+
+@CachePut(value = CACHE_NAME, key = "#user.id")
+updateUser(User user) {}
+
+@CacheEvict(value = CACHE_NAME, key = "#id")
+deleteUser(Long id)
+
+Step5: Run the Redis cache
+update the redis cmd: docker pull redis:latest
+run the redis cmd: docker run -d --name my-redis-cache-01 -p 6379:6379 redis:latest
+verify the container cmd: docker ps
+
+Step6: test the endpoints
+I was enabled getUser endpoint, when i hit the first time checking the cache,
+there is no record will execute the database query and stored in to cache.
+In a second hit onwards, fetching the values from cache.
+***Monitor the logs query was not executed while fetching the data from cache.
+
