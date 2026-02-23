@@ -1,0 +1,9 @@
+com\skcode\springbootrecordsdto\dto\ProductRequestDTO.class
+com\skcode\springbootrecordsdto\dto\ProductResponseDTO.class
+com\skcode\springbootrecordsdto\SpringBootRecordsdtoApplication.class
+com\skcode\springbootrecordsdto\repo\ProductRepository.class
+com\skcode\springbootrecordsdto\mapper\ProductMapperImpl.class
+com\skcode\springbootrecordsdto\mapper\ProductMapper.class
+com\skcode\springbootrecordsdto\service\ProductService.class
+com\skcode\springbootrecordsdto\entity\Product.class
+com\skcode\springbootrecordsdto\controller\ProductController.class
